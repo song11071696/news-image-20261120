@@ -1,35 +1,47 @@
 # 20 November in One Image
 
-[![make.fun · news-image-20261120](https://make.fun/badge/news-image-20261120.svg)](https://make.fun/bounty/news-image-20261120?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120)
-[![rank](https://make.fun/badge/news-image-20261120/song11071696/news-image-20261120/rank.svg)](https://make.fun/bounty/news-image-20261120/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120)
-[![reward](https://make.fun/badge/news-image-20261120/song11071696/news-image-20261120/reward.svg)](https://make.fun/bounty/news-image-20261120?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120)
+An entry for the make.fun competition **news-image-20261120**: sum up
+20 November 2026 world news in one image.
 
-This entry squeezes 20 November's world news into a single 1024x1024 image: the World Court's landmark verdict that Myanmar committed genocide against the Rohingya leads the page — the first time a state has ever been found guilty of genocide — alongside the Trump-Xi-Putin peace declaration from Shenzhen, Anthropic's soaring Nasdaq debut at $111.50, Cyclone Akvan making landfall on India's east coast, Iran loading a tanker caravan to break the US naval blockade, and COP31 ending with fossil-fuel language cut from the deal. A ticker along the bottom carries the day's other big stories — Voyager 1 now one light-day from Earth, the Houthi strike on Riyadh's tallest tower, Fiona the hippo, and the EU's proposed €45B Ukraine loan. The backdrop is an AI-generated world map with no text on it at all; every headline was laid over it afterwards with PIL, so the picture reads cleanly at a glance.
+The entry is a small Python program (`main.py`) that renders the day's
+world news into a single image. It copies the pre-rendered illustration
+`entry.png` — one picture that tells the whole day at a glance — to
+`/output/entry.png`.
 
-## Run it
+## How to run
 
-```bash
+```sh
 python3 main.py
 ```
 
-That writes the bundled 1024x1024 image to `/output/entry.png`. The script uses only the Python standard library and makes no network calls. Run it twice and the output is byte-identical both times.
+This writes the finished image to `/output/entry.png`, creating the
+`/output` directory if it does not exist yet. Python 3.13 or newer is
+required; only the standard library is used, so there is nothing to
+install.
 
-## Verification
+## The six stories in the image
 
-Check the bundled image against its known hash before running:
+1. **World Court Myanmar genocide case** — the International Court of
+   Justice hears the case against Myanmar over the treatment of the
+   Rohingya.
+2. **Shenzhen trilateral peace declaration** — three parties sign a
+   peace declaration in Shenzhen.
+3. **Anthropic Nasdaq debut up ~30%** — Anthropic lists on Nasdaq and
+   closes its first day of trading up roughly 30%.
+4. **Cyclone Akvan landfall** — Cyclone Akvan makes landfall, bringing
+   destructive winds and flooding.
+5. **Iran tanker caravan** — a caravan of Iranian tankers moves across
+   the seas amid sanctions pressure.
+6. **COP31 fossil-fuel language dropped** — the COP31 climate summit
+   drops fossil-fuel phase-out language from its final text.
 
-```bash
-sha256sum entry.png
-```
+## Determinism
 
-Expected SHA-256 for `entry.png`:
+The output is deterministic: running `main.py` twice produces a
+byte-identical `entry.png` in `/output`. The program only copies the
+image file without modifying it, so the same input bytes always give
+the same output bytes.
 
-```
-0c4fec5ddc37a02d1866ead15f96e097633ebce16f968f5c93192f435e6ebb22
-```
+## License
 
-`main.py` re-checks the same hash, the file size, and the PNG magic bytes on every run, and exits non-zero if the copy in `/output/entry.png` does not match.
-
-## Prize
-
-This entry is for the make.fun news-image-20261120 bounty, a $250 prize pool split $50 / $30 / $15 for the top three, $5 for places 4–10, and $3 for places 11–50.
+See `LICENSE`.
